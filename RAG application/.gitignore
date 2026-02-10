@@ -1,0 +1,7 @@
+.venv/
+lib/
+qdrant_data/
+scripts/
+src/rag/__pycache__/
+src/config/__pycache__/
+

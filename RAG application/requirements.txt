@@ -1,0 +1,14 @@
+qdrant-client>=1.7,<2
+langchain-community>=0.2
+langgraph>=0.1.12
+langchain-text-splitters==1.1.0
+langchain-experimental==0.4.1
+python-dotenv>=1.0
+unstructured>=0.15
+pypdf>=4
+rich>=13
+mcp>=1.1
+fastmcp>=0.2
+pandas>=2.2
+openai>=1.0
+azure-identity>=1.17
