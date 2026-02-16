@@ -31,6 +31,18 @@ This project demonstrates a local-only Retrieval-Augmented Generation (RAG) work
   - processed/ — optional intermediate outputs
 - scripts/ — (reserved for future utilities)
 
+## Prerequisites
+- Podman Desktop: Installed and running (for local Qdrant container).
+- Azure OpenAI access: An Azure OpenAI resource with deployed models.
+  - Required: `AZURE_OPENAI_ENDPOINT`, `AZURE_OPENAI_API_VERSION`,
+    deployment names for chat (`AZURE_OPENAI_DEPLOYMENT`) and embeddings (`AZURE_OPENAI_EMBED_DEPLOYMENT`).
+- Authentication (choose one):
+  - DefaultAzureCredential (recommended): Sign in via `az login` or VS Code Azure auth.
+  - API Key (optional): Set `AZURE_OPENAI_API_KEY` and use the commented API-key client snippets in code.
+- Python: 3.11+ and a virtual environment (`.venv`).
+- Network: Outbound internet access to Azure endpoints; localhost port `6333` available for Qdrant.
+- OS: Tested on Windows (PowerShell). Adapt commands for macOS/Linux as needed.
+
 ## Setup
 1. Create and activate a virtual environment.
 
@@ -64,6 +76,12 @@ podman run -d --name qdrant -p 6333:6333 qdrant/qdrant:latest
 # AZURE_OPENAI_API_VERSION=2024-08-01-preview
 # AZURE_OPENAI_DEPLOYMENT=<your-deployment-name>
 # Authentication uses DefaultAzureCredential (Azure CLI login, VS Code, Managed Identity, etc.)
+#
+# Alternatively, use API key auth:
+#   - Set AZURE_OPENAI_API_KEY in your environment
+#   - Uncomment the API-key client blocks in:
+#       apps/agent_console/main.py (AsyncAzureOpenAI)
+#       src/rag/embeddings.py (AzureOpenAI embeddings)
 ```
 
 Add quarterly result PDFs to `data/raw`.

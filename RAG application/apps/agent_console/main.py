@@ -129,6 +129,18 @@ async def generate(state: AgentState) -> AgentState:
         api_version=AZURE_OPENAI_API_VERSION,
         azure_ad_token_provider=get_azure_token,
     )
+    # --- Alternative: Use API Key instead of DefaultAzureCredential ---
+    # To use an API key, set the environment variable AZURE_OPENAI_API_KEY,
+    # then uncomment the block below and comment out the AAD provider above.
+    #
+    # api_key = os.environ.get("AZURE_OPENAI_API_KEY")
+    # if not api_key:
+    #     raise RuntimeError("AZURE_OPENAI_API_KEY not set")
+    # client = AsyncAzureOpenAI(
+    #     azure_endpoint=AZURE_OPENAI_ENDPOINT,
+    #     api_version=AZURE_OPENAI_API_VERSION,
+    #     api_key=api_key,
+    # )
     question = state["question"]
     ctx = "\n\n".join(state.get("contexts", []))
     system = "You are a financial analyst. Answer using the provided context. If uncertain, say so."

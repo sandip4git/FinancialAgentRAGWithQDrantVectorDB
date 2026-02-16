@@ -24,6 +24,19 @@ def _get_client() -> AzureOpenAI:
             api_version=AZURE_OPENAI_API_VERSION,
             azure_ad_token_provider=get_azure_token,
         )
+        # --- Alternative: Use API Key instead of DefaultAzureCredential ---
+        # To use an API key, set AZURE_OPENAI_API_KEY in your environment
+        # and replace the client initialization above with the block below:
+        #
+        # import os
+        # api_key = os.environ.get("AZURE_OPENAI_API_KEY")
+        # if not api_key:
+        #     raise RuntimeError("AZURE_OPENAI_API_KEY not set")
+        # _client = AzureOpenAI(
+        #     azure_endpoint=AZURE_OPENAI_ENDPOINT,
+        #     api_version=AZURE_OPENAI_API_VERSION,
+        #     api_key=api_key,
+        # )
     return _client
 
 
